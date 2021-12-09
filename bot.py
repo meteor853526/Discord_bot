@@ -16,5 +16,5 @@ async def on_message(message):
         await message.channel.send('\OwO/')
    
 
-bot.run('OTE3MDUxMjQ1NzIwNjU3OTMy.YazEhg.n5DXSkFRhwJr2xaCsydvsxRRU6o')
+bot.run('OTE3MDUxMjQ1NzIwNjU3OTMy.YazEhg.bhH7qgtaXYRdX1whpuJkC6tvmtA')
 
