@@ -26,7 +26,7 @@ async def test(ctx):
 
 @bot.command()
 async def ping(ctx):
-    await ctx.send(bot.latency)
+    await ctx.send(f'{bot.latency*1000} (ms)')
 
 @bot.command()
 # 本機圖片庫
@@ -36,9 +36,8 @@ async def weather(ctx):
 
 @bot.command()
 async def web(ctx):
-
     pic = random.choice(jdata['url_pic'])
     await ctx.send(pic)
 
-bot.run('OTE3MDUxMjQ1NzIwNjU3OTMy.YazEhg.bhH7qgtaXYRdX1whpuJkC6tvmtA')
+bot.run('OTE4NTI1NjU2MDEzMzQwNjcy.YbIhrQ.lI0du9unnlG9Yz9Kvp3nW7UyT18')
 
