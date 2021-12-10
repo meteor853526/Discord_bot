@@ -3,6 +3,7 @@ from discord.ext import commands
 import json
 # import random
 import os
+from core.classes import Cog_Extension
 
 with open('setting.json', mode='r',encoding='utf-8') as jFile: 
     jdata = json.load(jFile)
@@ -13,14 +14,13 @@ bot = commands.Bot(command_prefix='$')
 async def on_ready():
     print("Bot is online")
     
-
 @bot.event
 async def on_message(message):
     
     if message.content.startswith('測試'):
         await message.channel.send('\OwO/')
     await bot.process_commands(message)
-    
+
 # load,unload,reload實作
 @bot.command()
 async def load(ctx,extension):
