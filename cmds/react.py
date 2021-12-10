@@ -1,6 +1,10 @@
 import discord
 import random
 import json
+import sys
+sys.path.append('./')
+import Crawler
+
 from discord.ext import commands
 from core.classes import Cog_Extension
 
@@ -20,6 +24,12 @@ class React(Cog_Extension):
     async def web(self,ctx):
         pic = random.choice(jdata['url_pic'])
         await ctx.send(pic)
+    @commands.command()
+
+    #爬蟲 - 氣象圖片
+    async def craw(self,ctx):
+        source = Crawler.crawler()
+        await ctx.send(source)
 
 def setup(bot):
     bot.add_cog(React(bot))
