@@ -26,7 +26,7 @@ async def test(ctx):
 
 @bot.command()
 async def ping(ctx):
-    await ctx.send(f'{bot.latency*1000} (ms)')
+    await ctx.send(f'{round(bot.latency*1000,2)} (ms)')
 
 @bot.command()
 # 本機圖片庫
