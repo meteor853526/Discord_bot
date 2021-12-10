@@ -1,7 +1,9 @@
 import discord
 from discord.ext import commands
 import json
-import random
+# import random
+import os
+
 with open('setting.json', mode='r',encoding='utf-8') as jFile: 
     jdata = json.load(jFile)
 
@@ -18,26 +20,32 @@ async def on_message(message):
     if message.content.startswith('測試'):
         await message.channel.send('\OwO/')
     await bot.process_commands(message)
+    
+# load,unload,reload實作
+@bot.command()
+async def load(ctx,extension):
+    bot.load_extension(f'cmds.{extension}')
+    await ctx.send(f'Loaded {extension} done.')
+
+@bot.command()
+async def unload(ctx,extension):
+    bot.unload_extension(f'cmds.{extension}')
+    await ctx.send(f'Un - Loaded {extension} done.')
+
+@bot.command()
+async def reload(ctx,extension):
+    bot.reload_extension(f'cmds.{extension}')
+    await ctx.send(f'Re _ Loaded {extension} done.')
 
 
 @bot.command()
 async def test(ctx):
     await ctx.send("測試@bot.command成功運作")
 
-@bot.command()
-async def ping(ctx):
-    await ctx.send(f'{round(bot.latency*1000,2)} (ms)')
+for filename in os.listdir('./cmds'):
+    if filename.endswith('.py'):
+        bot.load_extension(f'cmds.{filename[:-3]}')
 
-@bot.command()
-# 本機圖片庫
-async def weather(ctx):
-    pic = discord.File(jdata['pic'])
-    await ctx.send(file=pic)
-
-@bot.command()
-async def web(ctx):
-    pic = random.choice(jdata['url_pic'])
-    await ctx.send(pic)
-
-bot.run('OTE4NTI1NjU2MDEzMzQwNjcy.YbIhrQ.lI0du9unnlG9Yz9Kvp3nW7UyT18')
+if __name__ == '__main__':
+    bot.run(jdata['TOKEN'])
 
