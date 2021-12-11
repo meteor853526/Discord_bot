@@ -1,8 +1,10 @@
 import urllib.request as req
 import bs4
+import datetime
 
 # 安裝套件 pip install beautifulsoup4
 from datetime import datetime
+
 def crawler():
 
     # 抓取 soft job 版的網頁原始碼(HTML)
