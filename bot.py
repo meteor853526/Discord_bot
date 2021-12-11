@@ -5,6 +5,7 @@ import json
 import os
 from core.classes import Cog_Extension
 
+
 with open('setting.json', mode='r',encoding='utf-8') as jFile: 
     jdata = json.load(jFile)
 
