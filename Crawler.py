@@ -1,7 +1,7 @@
 import urllib.request as req
 import bs4
-def crawler():
 
+def crawler():
     # 抓取 soft job 版的網頁原始碼(HTML)
     
     url = "https://www.cwb.gov.tw/V8/C/W/OBS_Radar.html"
@@ -24,7 +24,7 @@ def crawler():
                 if img['src'].endswith('.png'):
                     
                     source = "https://www.cwb.gov.tw/" + img['src']
-                    break;
+                    break
 
     
     # for title in titles:
