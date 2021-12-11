@@ -28,8 +28,7 @@ class React(Cog_Extension):
 
     #爬蟲 - 氣象圖片
     async def craw(self,ctx):
-        source = Crawler.crawler()
-        await ctx.send(source)
+        await ctx.send(Crawler.crawler())
 
 def setup(bot):
     bot.add_cog(React(bot))
