@@ -33,7 +33,7 @@ def crawler():
                 if img['src'].endswith('.png'):
                     source = "https://www.cwb.gov.tw" + img['src']
                     source = source[:-4] +'_'+ bac + '.png'
-                    break;
+                    break
 
 
 
