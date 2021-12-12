@@ -25,15 +25,22 @@ def crawler():
     #獲取當前時間
     bac = datetime.now().strftime('%Y%m%d%H')
     res = datetime.now().strftime('%Y%m%d%H' + '%M')
-    lasttime = int(int(res[10] + res[11]) / 10) *10 - 10
+    lasttime = int(int(res[10] + res[11]) / 10) *10 
+    if lasttime >= 10:
+        lasttime = lasttime -10
+    
+
     bac = bac + str(lasttime)
 
+    if lasttime == 0:
+        bac = bac + '0'
+    
     for img in titles:
-            if 'src' in img.attrs:
-                if img['src'].endswith('.png'):
-                    source = "https://www.cwb.gov.tw" + img['src']
-                    source = source[:-4] +'_'+ bac + '.png'
-                    break;
+        if 'src' in img.attrs:
+            if img['src'].endswith('.png'):
+                source = "https://www.cwb.gov.tw" + img['src']
+                source = source[:-4] +'_'+ bac + '.png'
+                break;
 
 
 
