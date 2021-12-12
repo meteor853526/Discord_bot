@@ -21,12 +21,21 @@ def crawler():
     titles = root.find_all('img')
     #print(titles)
 
-    from datetime import datetime
-    #獲取當前時間
-    bac = datetime.now().strftime('%Y%m%d%H')
+    bac = datetime.now().strftime('%Y%m%d')
     res = datetime.now().strftime('%Y%m%d%H' + '%M')
-    lasttime = int(int(res[10] + res[11]) / 10) *10 - 10
-    bac = bac + str(lasttime)
+
+    lasttime = int(int(res[10] + res[11]) / 10) *10
+    hour = int(res[8] + res[9])
+
+    if lasttime >= 10:
+        lasttime = lasttime - 10
+        if lasttime == 0 :
+            lasttime = str(lasttime) + '0'
+    elif lasttime == 0:
+        lasttime = 50
+        hour = hour - 1
+
+    bac = bac + str(hour) + str(lasttime)
 
     for img in titles:
             if 'src' in img.attrs:
@@ -34,7 +43,6 @@ def crawler():
                     source = "https://www.cwb.gov.tw" + img['src']
                     source = source[:-4] +'_'+ bac + '.png'
                     break;
-
 
 
     return source
