@@ -4,8 +4,8 @@ import json
 # import random
 import os
 from core.classes import Cog_Extension
-
-
+from discord_components.client import DiscordComponents # pip install discord-components
+from discord_components import DiscordComponents
 with open('setting.json', mode='r',encoding='utf-8') as jFile: 
     jdata = json.load(jFile)
 
@@ -14,7 +14,7 @@ bot = commands.Bot(command_prefix='$')
 @bot.event
 async def on_ready():
     print("Bot is online")
-    
+    DiscordComponents(bot)
 @bot.event
 async def on_message(message):
     

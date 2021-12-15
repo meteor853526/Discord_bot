@@ -5,7 +5,8 @@ import sys
 sys.path.append('./')
 import Crawler
 import earthq
-
+from discord_components import *
+# pip install discord-components
 from discord.ext import commands
 from core.classes import Cog_Extension
 
@@ -29,7 +30,27 @@ class React(Cog_Extension):
     @commands.command()
     #爬蟲 - 氣象圖片
     async def craw(self,ctx):
-        await ctx.send(Crawler.crawler())
+        await ctx.channel.send(
+            "圖片選項",
+            components=[
+                Button(style=ButtonStyle.blue,label = "雷達"),
+                Button(style=ButtonStyle.red,label = "雨量"),
+            ],
+        )
+        res = await self.bot.wait_for("button_click")
+        if res.channel == ctx.channel:
+            await res.respond(
+                content='雷達圖顯示成功'
+            )
+            await ctx.channel.send(Crawler.crawler(2))
+
+        
+        res2 = await self.bot.wait_for("button_click")
+        if res2.channel == ctx.channel:
+            await res2.respond(
+                content='雨量圖顯示成功'
+            )
+            await ctx.channel.send(Crawler.crawler(3))
 
     @commands.command()
     #爬蟲 - 地震表
