@@ -10,10 +10,10 @@ def crawler(choice):
         res = datetime.now().strftime('%Y-%m-%d_%H%M')
         org = int(res[13] + res[14])
 
-        lasttime = int(int(((int(res[13] + res[14]) + 60)-20) % 60) /10)
+        lasttime = int(int(((int(res[13] + res[14]) + 60)-30) % 60) /10)
         lasttime = lasttime*10
         hour = int(res[11] + res[12])
-        if org < 20:
+        if org < 30:
             hour = hour - 1
         if lasttime == 60:
             lasttime = str('00')
