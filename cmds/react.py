@@ -33,24 +33,35 @@ class React(Cog_Extension):
         await ctx.channel.send(
             "圖片選項",
             components=[
+                Button(style=ButtonStyle.green,label = "雲圖"),
                 Button(style=ButtonStyle.blue,label = "雷達"),
                 Button(style=ButtonStyle.red,label = "雨量"),
             ],
         )
-        res = await self.bot.wait_for("button_click")
-        if res.channel == ctx.channel:
-            await res.respond(
+        res1 = await self.bot.wait_for("button_click")
+        if res1.channel == ctx.channel:
+            await res1.respond(
+                content='雲圖顯示成功'
+            )
+            await ctx.channel.send(Crawler.crawler(1))
+
+
+        res2 = await self.bot.wait_for("button_click")
+        if res2.channel == ctx.channel:
+            await res2.respond(
                 content='雷達圖顯示成功'
             )
             await ctx.channel.send(Crawler.crawler(2))
 
         
-        res2 = await self.bot.wait_for("button_click")
-        if res2.channel == ctx.channel:
-            await res2.respond(
+        res3 = await self.bot.wait_for("button_click")
+        if res3.channel == ctx.channel:
+            await res3.respond(
                 content='雨量圖顯示成功'
             )
             await ctx.channel.send(Crawler.crawler(3))
+
+        
 
     @commands.command()
     #爬蟲 - 地震表
