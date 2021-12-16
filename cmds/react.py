@@ -65,8 +65,19 @@ class React(Cog_Extension):
 
     @commands.command()
     #爬蟲 - 地震表
-    async def earthq(self,ctx):
-        await ctx.send(earthq.earth())
-
+    async def tweq(self,ctx):
+        embed=discord.Embed(title="地震報告", url="https://opendata.cwb.gov.tw/dist/opendata-swagger.html", description="報告連結")
+        
+        embed.set_author(name="中央氣象局資料開放平台")
+        embed.add_field(name="發生時間", value="undefined", inline=False)
+        embed.add_field(name="震央", value="undefined", inline=False)
+        embed.add_field(name="芮氏規模", value="undefined", inline=True)
+        embed.add_field(name="深度", value="undefined", inline=True)
+        embed.add_field(name="最大震度3級地區", value="undefined", inline=False)
+        embed.add_field(name="最大震度2級地區", value="undefined", inline=False)
+        embed.add_field(name="最大震度1級地區", value="undefined", inline=False)
+        await ctx.send(embed=embed)
+        await ctx.send(earthq.twearthquake())
+   
 def setup(bot):
     bot.add_cog(React(bot))
