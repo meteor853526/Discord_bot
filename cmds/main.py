@@ -22,12 +22,12 @@ class Main(Cog_Extension):
         # embed.set_footer(text="footer name")
         await ctx.send(embed=embed)
 
-    @commands.command()
-    async def sayd(self,ctx,*,msg):
-        await ctx.message.delete()
-        await ctx.send(msg)
+    # @commands.command()  //複讀機
+    # async def sayd(self,ctx,*,msg):
+    #     await ctx.message.delete()
+    #     await ctx.send(msg)
 
-    @commands.command()
+    @commands.command()  
     async def clean(self,ctx,num:int):
         await ctx.channel.purge(limit=num+1)
 
