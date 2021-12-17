@@ -8,7 +8,9 @@ def earth():
         df = pd.DataFrame()
         url = f'https://scweb.cwb.gov.tw/zh-tw/earthquake/world/'
         df = pd.concat([df, pd.read_html(url)[0]]) # 爬取+合併DataFrame
-    df = df.head(3)
+    df = df.head(1)
+
+    
     return df
 
 def twearthquake():
