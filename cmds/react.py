@@ -53,18 +53,20 @@ class React(Cog_Extension):
     @commands.command()
     #爬蟲 - 地震表
     async def tweq(self,ctx):
-        embed=discord.Embed(title="地震報告", url="https://opendata.cwb.gov.tw/dist/opendata-swagger.html", description="報告連結")
+        Alldata = {}
+        Alldata = earthq.twearthquake()  # 呼叫earthq中的twearthquake()並回傳Alldata字典
         
-        embed.set_author(name="中央氣象局資料開放平台")
-        embed.add_field(name="發生時間", value="undefined", inline=False)
-        embed.add_field(name="震央", value="undefined", inline=False)
-        embed.add_field(name="芮氏規模", value="undefined", inline=True)
-        embed.add_field(name="深度", value="undefined", inline=True)
-        embed.add_field(name="最大震度3級地區", value="undefined", inline=False)
-        embed.add_field(name="最大震度2級地區", value="undefined", inline=False)
-        embed.add_field(name="最大震度1級地區", value="undefined", inline=False)
+        embed=discord.Embed(title="地震報告", url=Alldata['web'], description="報告連結",color=0x505177)
+        embed.set_author(name="中央氣象局資料開放平台", url="https://opendata.cwb.gov.tw/devManual/insrtuction", icon_url="https://www.kindpng.com/picc/m/178-1780574_weather-forecast-icon-png-transparent-png.png")
+        embed.add_field(name="發生時間", value=Alldata['time'], inline=False)
+        embed.add_field(name="震央", value=Alldata['where'], inline=False)
+        embed.add_field(name="芮氏規模", value=Alldata['level'], inline=True)
+        embed.add_field(name="深度", value=Alldata['depth'], inline=True)
+        embed.add_field(name="最大震度"+ str(Alldata['areaLevel']) +"級地區", value=Alldata['area'], inline=False)
+        
+        embed.set_image(url=Alldata['Image'])
         await ctx.send(embed=embed)
-        await ctx.send(earthq.twearthquake())
+        
    
 def setup(bot):
     bot.add_cog(React(bot))
