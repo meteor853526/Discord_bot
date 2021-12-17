@@ -5,7 +5,7 @@ from datetime import datetime
 def crawler(choice):
 
     # 抓取 soft job 版的網頁原始碼(HTML)
-    if choice == 1 :
+    if choice == '雲層' :
         bac = datetime.now().strftime('%Y-%m-%d-')
         res = datetime.now().strftime('%Y-%m-%d_%H%M')
         org = int(res[13] + res[14])
@@ -19,12 +19,13 @@ def crawler(choice):
             lasttime = str('00')
         if hour < 10 :
             hour = str('0') + str(hour)
-
+        if lasttime == 0:
+            lasttime = str('00')
         source = 'https://www.cwb.gov.tw//Data/satellite/LCC_IR1_CR_2750/LCC_IR1_CR_2750-'+bac + str(hour) +'-'+ str(lasttime) + '.jpg'
         return source
 
 
-    if choice == 2:
+    if choice == '雷達':
         url = "https://www.cwb.gov.tw/V8/C/W/OBS_Radar.html"
         # 建立一個 Request 物件 , 附加 Request Headers 的資訊
         request = req.Request(url,headers={
@@ -56,6 +57,8 @@ def crawler(choice):
 
         if hour == 0:
             hour = str('00')
+        if lasttime == 0:
+            lasttime = str('00') 
         bac = bac + str(hour) + str(lasttime)
 
         for img in titles:
@@ -67,7 +70,7 @@ def crawler(choice):
 
         return source
 
-    if choice == 3:
+    if choice == '雨量':
         
 
         bac = datetime.now().strftime('%Y-%m-%d_')

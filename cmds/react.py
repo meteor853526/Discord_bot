@@ -33,50 +33,23 @@ class React(Cog_Extension):
         await ctx.channel.send(
             "圖片選項",
             components=[
-                Button(style=ButtonStyle.green,label = "雲圖",id="雲圖"),
-                Button(style=ButtonStyle.blue,label = "雷達",id="雷達"),
-                Button(style=ButtonStyle.red,label = "雨量",id="雨量"),
+                Button(style=ButtonStyle.green,label = "雲層",custom_id="雲層"),  # custom_id每個button獨特的id
+                Button(style=ButtonStyle.blue,label = "雷達",custom_id="雷達"),     
+                Button(style=ButtonStyle.red,label = "雨量",custom_id="雨量"),
             ],
         )
-        # res1 = await self.bot.wait_for("button_click",check=lambda i:i.component.label.startswith("雲圖"))
-        
-        # if res1.channel == ctx.channel:
-        #     await res1.respond(
-        #         content='雲圖顯示成功'
-        #     )
-        #     await ctx.channel.send(Crawler.crawler(1))
-
-
-        # res2 = await self.bot.wait_for("button_click",check=lambda i:i.component.label.startswith("雷達"))
-        # if res2.channel == ctx.channel:
-        #     await res2.respond(
-        #         content='雷達圖顯示成功'
-        #     )
-        #     await ctx.channel.send(Crawler.crawler(2))
-
-        
-        # res3 = await self.bot.wait_for("button_click",check=lambda i:i.component.label.startswith("雨量"))
-        # if res3.channel == ctx.channel:
-        #     await res3.respond(
-        #         content='雨量圖顯示成功'
-        #     )
-        #     await ctx.channel.send(Crawler.crawler(3))
 
         while True:
-            event = await self.bot.wait_for("button_click")
-            if event.channel is not ctx.channel:
+            event = await self.bot.wait_for("button_click")   #點擊button
+            if event.channel is not ctx.channel:              
                 return
             else:
-                response = component.get(event.component.id)
-                if response is None:
-                    await event.channel.send("wrong")
-
                 if event.channel == ctx.channel:
-                    await event.respond(
-                        type=InteractionEventType.ChannelMessageWithSource,
-                        content="???"
+                    await event.respond(                      # 回傳訊息
+                        content=event.custom_id+'圖顯示成功'  # custom_id + 圖顯示成功
                     )
-        #未修復
+                    await ctx.channel.send(Crawler.crawler(event.custom_id))  # 輸出圖片
+        #已修復
     @commands.command()
     #爬蟲 - 地震表
     async def tweq(self,ctx):
