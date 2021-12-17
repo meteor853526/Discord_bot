@@ -8,7 +8,9 @@ def earth():
         df = pd.DataFrame()
         url = f'https://scweb.cwb.gov.tw/zh-tw/earthquake/world/'
         df = pd.concat([df, pd.read_html(url)[0]]) # 爬取+合併DataFrame
+    df = df.head(3)
     return df
+
 def twearthquake():
     url = requests.get("https://opendata.cwb.gov.tw/api/v1/rest/datastore/E-A0015-001?Authorization=CWB-52C9B737-834C-4B2A-A760-12C990B1E01E&limit=1&offset=0&format=JSON&areaName=%E5%AE%9C%E8%98%AD%E7%B8%A3&stationName=string")
     data = url.text
