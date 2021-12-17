@@ -50,6 +50,11 @@ class React(Cog_Extension):
                     )
                     await ctx.channel.send(Crawler.crawler(event.custom_id))  # 輸出圖片
         #已修復
+        
+    @commands.command() 
+    async def earthq(self,ctx):
+        await ctx.send(earthq.earth())
+
     @commands.command()
     #爬蟲 - 地震表
     async def tweq(self,ctx):
