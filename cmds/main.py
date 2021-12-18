@@ -11,11 +11,12 @@ class Main(Cog_Extension):
 
     @commands.command()
     async def how(self,ctx):
-        embed=discord.Embed(title="天氣預報", description="關於今天", color=0x47e1ba,timestamp=datetime.datetime.now())
-        embed.set_author(name="中央氣象局", url="https://www.cwb.gov.tw/V8/C/W/week.html")
-        embed.add_field(name="早上", value="18 - 27", inline=True)
-        embed.add_field(name="晚上", value="15 - 19", inline=True)
-        # embed.set_footer(text="footer name")
+        embed=discord.Embed(title="關於指令意思", color=0xe17e2d)
+        embed.add_field(name="$help", value="顯示可使用的指令列", inline=False)
+        embed.add_field(name="$earthq", value="顯示全球最新的地震資訊", inline=False)
+        embed.add_field(name="$tweq", value="顯示台灣最新編號的地震資訊", inline=False)
+        embed.add_field(name="$craw", value="顯示氣象天氣圖", inline=False)
+        embed.add_field(name="直接輸入縣市", value="顯示所在縣市天氣資訊", inline=False)
         await ctx.channel.purge(limit=1)
         await ctx.send(embed=embed)
 

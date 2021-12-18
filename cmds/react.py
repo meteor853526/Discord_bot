@@ -52,8 +52,20 @@ class React(Cog_Extension):
         #已修復
         
     @commands.command() 
-    async def earthq(self,ctx):
-        await ctx.send(earthq.earth())
+    async def earthq(self,ctx):        
+        first = {}
+        first = earthq.earth() 
+        
+        embed=discord.Embed(title="全球地震報告",color=0xea8a8a)
+        embed.set_author(name="中央氣象局資料開放平台", url="https://scweb.cwb.gov.tw/zh-tw/earthquake/world/", icon_url="https://www.kindpng.com/picc/m/178-1780574_weather-forecast-icon-png-transparent-png.png")
+        embed.add_field(name="地震台灣時間", value=first['time'], inline=False)
+        embed.add_field(name="經度", value=first['longitude'], inline=True)
+        embed.add_field(name="緯度", value=first['latitude'], inline=True)
+        embed.add_field(name="深度", value=first['depth'], inline=False)
+        embed.add_field(name="規模", value=first['scale'], inline=False)
+        embed.add_field(name="地震位置", value=first['space'], inline=False)
+        
+        await ctx.send(embed=embed)
 
     @commands.command()
     #爬蟲 - 地震表
