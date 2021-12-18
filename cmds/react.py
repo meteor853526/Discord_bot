@@ -54,7 +54,7 @@ class React(Cog_Extension):
     @commands.command() 
     async def earthq(self,ctx):        
         first = {}
-        first = earthq.earth()  # 呼叫earthq中的twearthquake()並回傳Alldata字典
+        first = earthq.earth() 
         
         embed=discord.Embed(title="全球地震報告",color=0xea8a8a)
         embed.set_author(name="中央氣象局資料開放平台", url="https://scweb.cwb.gov.tw/zh-tw/earthquake/world/", icon_url="https://www.kindpng.com/picc/m/178-1780574_weather-forecast-icon-png-transparent-png.png")
