@@ -14,7 +14,7 @@ class Event(Cog_Extension):
         '苗栗縣','臺中市','彰化縣','南投縣','雲林縣','嘉義市','嘉義縣','台南市',
         '高雄市','屏東縣','台東縣','花蓮縣','宜蘭縣','澎湖縣','金門縣','連江縣']
         if (msg.content in keyword) and (msg.author != self.bot.user):
-            embed=discord.Embed(title=msg.content, description=weather.today(msg.content))
+            embed=discord.Embed(title=msg.content, description=weather.today(msg.content),color=0x4895a8)
             embed.set_author(name='今天天氣')
             await msg.channel.send(embed=embed)
             # await msg.channel.send(msg.content)
