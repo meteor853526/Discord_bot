@@ -14,10 +14,21 @@ class Event(Cog_Extension):
         '苗栗縣','臺中市','彰化縣','南投縣','雲林縣','嘉義市','嘉義縣','臺南市',
         '高雄市','屏東縣','臺東縣','花蓮縣','宜蘭縣','澎湖縣','金門縣','連江縣']
         if (msg.content in keyword) and (msg.author != self.bot.user):
+            # 當天天氣
             embed=discord.Embed(title=msg.content, description=weather.today(msg.content),color=0x4895a8)
             embed.set_author(name='今天天氣')
             await msg.channel.send(embed=embed)
-            # await msg.channel.send(msg.content)
+            # 這周天氣
+            # embed=discord.Embed(title="一周天氣", url="https://www.cwb.gov.tw/V8/C/W/week.html", color=0x5592d3)
+            # embed.add_field(name="星期一", value="12 - 14", inline=False)
+            # embed.add_field(name="星期一", value="12 - 14", inline=False)
+            # embed.add_field(name="星期一", value="12 - 14", inline=False)
+            # embed.add_field(name="星期一", value="12 - 14", inline=False)
+            # embed.add_field(name="星期一", value="12 - 14", inline=False)
+            # embed.add_field(name="星期一", value="12 - 14", inline=False)
+            # embed.add_field(name="星期一", value="12 - 14", inline=False)
+            # await ctx.send(embed=embed)
+
 
 def setup(bot):
     bot.add_cog(Event(bot))
