@@ -7,7 +7,9 @@ def today(city_name):
     url = 'https://www.cwb.gov.tw/V8/C/W/week.html'
 
     #啟動模擬瀏覽器
-    driver = webdriver.Chrome(r'C:\\Users\\liyin\Downloads\\chromedriver_win32\\chromedriver.exe')
+    driver = webdriver.Chrome(r'C:\\Users\\123\Downloads\\chromedriver_win32 (1)\\chromedriver.exe')
+    # tina的網址：C:\\Users\\123\Downloads\\chromedriver_win32 (1)\\chromedriver.exe
+    # lili的網址：C:\\Users\\liyin\Downloads\\chromedriver_win32\\chromedriver.exe
 
     #取得網頁代碼
     driver.get(url)
