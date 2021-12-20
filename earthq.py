@@ -36,9 +36,9 @@ def twearthquake():
     infoWhere = info["epiCenter"]                    #json資料解析，這資料長的真的噁心
     infoLevel = info["magnitude"]
     infoDepth = info["depth"]
-    infoArea = earthquake["intensity"]
-    infoArea = infoArea['shakingArea']
-    infoArea = infoArea[0]
+    # infoArea = earthquake["intensity"]
+    # infoArea = infoArea['shakingArea']
+    # infoArea = infoArea[0]
 
     Alldata["time"] = info["originTime"]
     Alldata["Image"] = earthquake['reportImageURI']
@@ -46,8 +46,8 @@ def twearthquake():
     Alldata["where"] = infoWhere["location"]
     Alldata["level"] = infoLevel['magnitudeValue']
     Alldata["depth"] = infoDepth['value']
-    Alldata["area"] = infoArea['areaName']
-    Alldata['areaLevel'] = infoArea["areaIntensity"]['value']
+    # Alldata["area"] = infoArea['areaName']
+    # Alldata['areaLevel'] = infoArea["areaIntensity"]['value']
 
     return Alldata
     
