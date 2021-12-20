@@ -79,7 +79,7 @@ class React(Cog_Extension):
         embed.add_field(name="震央", value=Alldata['where'], inline=False)
         embed.add_field(name="芮氏規模", value=Alldata['level'], inline=True)
         embed.add_field(name="深度", value=Alldata['depth'], inline=True)
-        embed.add_field(name="最大震度"+ str(Alldata['areaLevel']) +"級地區", value=Alldata['area'], inline=False)
+        # embed.add_field(name="最大震度"+ str(Alldata['areaLevel']) +"級地區", value=Alldata['area'], inline=False)
         
         embed.set_image(url=Alldata['Image'])
         await ctx.send(embed=embed)
