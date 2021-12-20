@@ -73,15 +73,17 @@ def crawler(choice):
     if choice == '雨量':
         
 
-        bac = datetime.now().strftime('%Y-%m-%d_')
+        bac = datetime.now().strftime('%Y-%m-')
         res = datetime.now().strftime('%Y-%m-%d_%H%M')
         org = int(res[13] + res[14])
         lasttime = int(int(res[13] + res[14]) / 30) 
         hour = int(res[11] + res[12])
+        day = int(res[8] + res[9])
         if lasttime == 0:
             lasttime = 30
             if hour == 0:   # 00:00到00:29之間 抓23:30的圖片
                 hour = 23
+                day = day-1
             else:
                 hour = hour - 1
         else:
@@ -89,8 +91,11 @@ def crawler(choice):
                 lasttime = str('00')
             else:
                 lasttime = 30
+
         if hour == 0:
             hour = str('00')
-        source = 'https://www.cwb.gov.tw/Data/rainfall/'+bac + str(hour) + str(lasttime) + '.QZJ8.jpg'   # + 時間.QZJ8.jpg
+        if int(hour) < 10 and int(hour) != 0:
+            hour = str('0') + str(hour)
+        source = 'https://www.cwb.gov.tw/Data/rainfall/'+bac+str(day)+ "_" + str(hour) + str(lasttime) + '.QZJ8.jpg'   # + 時間.QZJ8.jpg
         return source
     
