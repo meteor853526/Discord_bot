@@ -84,7 +84,7 @@ class React(Cog_Extension):
                     
                     await ctx.channel.send(embed=embed)
                 if event.custom_id == '台灣地震':
-                    # 目前怪怪ㄉ 
+                    
                     Alldata = {}
                     Alldata = earthquake.twearthquake()  
                     # 呼叫 earthquake 中的 twearthquake() 並回傳Alldata字典
