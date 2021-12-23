@@ -63,12 +63,15 @@ class React(Cog_Extension):
         )      
 
         while True:
-            event = await self.bot.wait_for("button_click"  )   #點擊button
+            event = await self.bot.wait_for("button_click" )   #點擊button
             if event.channel == ctx.channel:
+                await event.respond(                      # 回傳訊息
+                        content="顯示成功"  # custom_id + 圖顯示成功
+                )
                 if event.custom_id == '全球地震' :
 
                     first = {}
-                    first = earthquake.earth(event.custom_id) 
+                    first = earthquake.earth() 
                     
                     embed=discord.Embed(title="全球地震報告",color=0xea8a8a)
                     embed.set_author(name="中央氣象局資料開放平台", url="https://scweb.cwb.gov.tw/zh-tw/earthquake/world/", icon_url="https://www.kindpng.com/picc/m/178-1780574_weather-forecast-icon-png-transparent-png.png")
@@ -83,7 +86,7 @@ class React(Cog_Extension):
                 if event.custom_id == '台灣地震':
                     # 目前怪怪ㄉ 
                     Alldata = {}
-                    Alldata = earthquake.twearthquake(event.custom_id)  
+                    Alldata = earthquake.twearthquake()  
                     # 呼叫 earthquake 中的 twearthquake() 並回傳Alldata字典
                     
                     embed=discord.Embed(title="地震報告", url=Alldata['web'], description="報告連結",color=0x505177)
@@ -96,6 +99,7 @@ class React(Cog_Extension):
                     
                     embed.set_image(url=Alldata['Image'])
                     await ctx.channel.send(embed=embed)
+                
 
     @commands.command()
     #爬蟲 - 地震表
