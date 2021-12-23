@@ -4,7 +4,7 @@ import json
 import sys
 sys.path.append('./')
 import Crawler
-import earthq
+import earthquake
 from discord_components import *
 # pip install discord-components
 from discord.ext import commands
@@ -52,26 +52,56 @@ class React(Cog_Extension):
         #已修復
         
     @commands.command() 
-    async def earthq(self,ctx):        
-        first = {}
-        first = earthq.earth() 
+    async def eq(self,ctx):  
         
-        embed=discord.Embed(title="全球地震報告",color=0xea8a8a)
-        embed.set_author(name="中央氣象局資料開放平台", url="https://scweb.cwb.gov.tw/zh-tw/earthquake/world/", icon_url="https://www.kindpng.com/picc/m/178-1780574_weather-forecast-icon-png-transparent-png.png")
-        embed.add_field(name="地震台灣時間", value=first['time'], inline=False)
-        embed.add_field(name="經度", value=first['longitude'], inline=True)
-        embed.add_field(name="緯度", value=first['latitude'], inline=True)
-        embed.add_field(name="深度", value=first['depth'], inline=False)
-        embed.add_field(name="規模", value=first['scale'], inline=False)
-        embed.add_field(name="地震位置", value=first['space'], inline=False)
-        
-        await ctx.send(embed=embed)
+        await ctx.channel.send(
+            "圖片選項",
+            components=[
+                Button(style=ButtonStyle.red,label = "全球地震",custom_id="全球地震"),  # custom_id每個button獨特的id
+                Button(style=ButtonStyle.blue,label = "台灣地震",custom_id="台灣地震"), 
+            ],
+        )      
+
+        while True:
+            event = await self.bot.wait_for("button_click"  )   #點擊button
+            if event.channel == ctx.channel:
+                if event.custom_id == '全球地震' :
+
+                    first = {}
+                    first = earthquake.earth(event.custom_id) 
+                    
+                    embed=discord.Embed(title="全球地震報告",color=0xea8a8a)
+                    embed.set_author(name="中央氣象局資料開放平台", url="https://scweb.cwb.gov.tw/zh-tw/earthquake/world/", icon_url="https://www.kindpng.com/picc/m/178-1780574_weather-forecast-icon-png-transparent-png.png")
+                    embed.add_field(name="地震台灣時間", value=first['time'], inline=False)
+                    embed.add_field(name="經度", value=first['longitude'], inline=True)
+                    embed.add_field(name="緯度", value=first['latitude'], inline=True)
+                    embed.add_field(name="深度", value=first['depth'], inline=False)
+                    embed.add_field(name="規模", value=first['scale'], inline=False)
+                    embed.add_field(name="地震位置", value=first['space'], inline=False)
+                    
+                    await ctx.channel.send(embed=embed)
+                if event.custom_id == '台灣地震':
+                    # 目前怪怪ㄉ 
+                    Alldata = {}
+                    Alldata = earthquake.twearthquake(event.custom_id)  
+                    # 呼叫 earthquake 中的 twearthquake() 並回傳Alldata字典
+                    
+                    embed=discord.Embed(title="地震報告", url=Alldata['web'], description="報告連結",color=0x505177)
+                    embed.set_author(name="中央氣象局資料開放平台", url="https://opendata.cwb.gov.tw/devManual/insrtuction", icon_url="https://www.kindpng.com/picc/m/178-1780574_weather-forecast-icon-png-transparent-png.png")
+                    embed.add_field(name="發生時間", value=Alldata['time'], inline=False)
+                    embed.add_field(name="震央", value=Alldata['where'], inline=False)
+                    embed.add_field(name="芮氏規模", value=Alldata['level'], inline=True)
+                    embed.add_field(name="深度", value=Alldata['depth'], inline=True)
+                    # embed.add_field(name="最大震度"+ str(Alldata['areaLevel']) +"級地區", value=Alldata['area'], inline=False)
+                    
+                    embed.set_image(url=Alldata['Image'])
+                    await ctx.channel.send(embed=embed)
 
     @commands.command()
     #爬蟲 - 地震表
     async def tweq(self,ctx):
         Alldata = {}
-        Alldata = earthq.twearthquake()  # 呼叫earthq中的twearthquake()並回傳Alldata字典
+        Alldata = earthquake.twearthquake()  # 呼叫earthq中的twearthquake()並回傳Alldata字典
         
         embed=discord.Embed(title="地震報告", url=Alldata['web'], description="報告連結",color=0x505177)
         embed.set_author(name="中央氣象局資料開放平台", url="https://opendata.cwb.gov.tw/devManual/insrtuction", icon_url="https://www.kindpng.com/picc/m/178-1780574_weather-forecast-icon-png-transparent-png.png")
@@ -83,7 +113,6 @@ class React(Cog_Extension):
         
         embed.set_image(url=Alldata['Image'])
         await ctx.send(embed=embed)
-        
    
 def setup(bot):
     bot.add_cog(React(bot))
