@@ -15,6 +15,7 @@ class Event(Cog_Extension):
         '苗栗縣','臺中市','彰化縣','南投縣','雲林縣','嘉義市','嘉義縣','臺南市',
         '高雄市','屏東縣','臺東縣','花蓮縣','宜蘭縣','澎湖縣','金門縣','連江縣']
         if (msg.content in keyword) and (msg.author != self.bot.user):await msg.channel.send(
+            "圖片選項",
             components=[
                 Button(style=ButtonStyle.red,label = "當天天氣",custom_id="當天天氣"),  # custom_id每個button獨特的id
                 Button(style=ButtonStyle.blue,label = "一周天氣",custom_id="一周天氣"), 
@@ -27,7 +28,7 @@ class Event(Cog_Extension):
                 if event.custom_id == '當天天氣' :
 
                     # 當天天氣
-                    embed=discord.Embed(title="今天天氣", url="https://www.cwb.gov.tw/V8/C/W/week.html",color=0x4895a8)
+                    embed=discord.Embed(title="今天天氣", url="https://www.cwb.gov.tw/V8/C/W/week.html", description=weather.today(msg.content),color=0x4895a8)
                     embed.add_field(name=msg.content, value=weather.today(msg.content), inline=False)
                     await msg.channel.send(embed=embed)
                 if event.custom_id == '一周天氣':
