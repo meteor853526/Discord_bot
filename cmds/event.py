@@ -25,9 +25,7 @@ class Event(Cog_Extension):
         while True:
             event = await self.bot.wait_for("button_click" )   #點擊button
             if event.channel == msg.channel:
-                await event.respond(                      # 回傳訊息
-                        content="測試"  # custom_id + 圖顯示成功
-                )
+                
                 if event.custom_id == '當天天氣' :
 
                     # 當天天氣
