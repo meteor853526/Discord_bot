@@ -7,7 +7,7 @@ def today(city_name):
     url = 'https://www.cwb.gov.tw/V8/C/W/week.html'
 
     #啟動模擬瀏覽器
-    driver = webdriver.Chrome("C:/chromedriver.exe")
+    driver = webdriver.Chrome(r'C:\\chromedriver.exe')
     # tina的網址：C:\\Users\\123\Downloads\\chromedriver_win32 (1)\\chromedriver.exe
     # lili的網址：C:\\Users\\liyin\Downloads\\chromedriver_win32\\chromedriver.exe
     # 安 : 
@@ -31,21 +31,23 @@ def today(city_name):
         if(th.span.text==city_name):
             td = tr.find('td',{'headers':'day1'})
             sp = td.find('span',{'class':'tem-C'})
+
     driver.quit()
+
     return sp.text
 
 def weekly(city_name):
     url = 'https://www.cwb.gov.tw/V8/C/W/week.html'
 
     #啟動模擬瀏覽器
-    driver = webdriver.Chrome(r'C:\\Users\\liyin\Downloads\\chromedriver_win32\\chromedriver.exe')
+    driver = webdriver.Chrome(r'C:\\chromedriver.exe')
 
     #取得網頁代碼
     driver.get(url)
 
     #指定 lxml 作為解析器
     soup = BeautifulSoup(driver.page_source, features='lxml')
-
+    
     #<table id='table1'>
     table = soup.find('table',{'id':'table1'})
     tbody = soup.find_all('tbody')
@@ -78,5 +80,6 @@ def weekly(city_name):
                 tt = str(temp.text)[0]+str(temp.text)[1]+' - '+str(temp.text)[-2]+str(temp.text)[-1]
                 sp.append(tt)
                 data[t] = tt
+    print(data)
     driver.quit()
     return data

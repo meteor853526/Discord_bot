@@ -27,7 +27,7 @@ class Event(Cog_Extension):
             if event.channel == msg.channel:
                 
                 if event.custom_id == '當天天氣' :
-
+                    
                     # 當天天氣
                     embed=discord.Embed(title="今天天氣", url="https://www.cwb.gov.tw/V8/C/W/week.html",color=0x4895a8)
                     embed.add_field(name=msg.content, value=weather.today(msg.content), inline=False)
@@ -37,8 +37,11 @@ class Event(Cog_Extension):
                     week = weather.weekly(msg.content)
                     embed=discord.Embed(title="一周天氣", url="https://www.cwb.gov.tw/V8/C/W/week.html", description=msg.content, color=0x5592d3)
                     date = []
+                    print(week)
                     for d in week.keys():
                         date.append(d)
+                        print(date)
+                    print(type(week))
                     
                     embed.add_field(name=str(date[0]), value=str(week[date[0]]), inline=False)
                     embed.add_field(name=date[1], value=week[date[1]], inline=False)
