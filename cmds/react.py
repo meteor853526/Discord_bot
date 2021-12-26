@@ -55,7 +55,7 @@ class React(Cog_Extension):
     async def eq(self,ctx):  
         
         await ctx.channel.send(
-            "圖片選項",
+            "圖片",
             components=[
                 Button(style=ButtonStyle.red,label = "全球地震",custom_id="全球地震"),  # custom_id每個button獨特的id
                 Button(style=ButtonStyle.blue,label = "台灣地震",custom_id="台灣地震"), 
