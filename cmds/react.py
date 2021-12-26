@@ -48,6 +48,7 @@ class React(Cog_Extension):
                     await event.respond(                      # 回傳訊息
                         content=event.custom_id+'圖顯示成功'  # custom_id + 圖顯示成功
                     )
+                    # 這裡好像要讓他跑多次一點，圖片才跑得出來
                     await ctx.channel.send(Crawler.crawler(event.custom_id))  # 輸出圖片
         #已修復
         
