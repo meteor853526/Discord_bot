@@ -19,47 +19,48 @@ class Event(Cog_Extension):
         keycontent = msg.content
         if (msg.content in keyword) and (msg.author != self.bot.user):
             await msg.channel.send(
-            keycontent,
-            components=[
-                Button(style=ButtonStyle.red,label = "當天天氣",custom_id="當天天氣"),  # custom_id每個button獨特的id
-                Button(style=ButtonStyle.blue,label = "一周天氣",custom_id="一周天氣"), 
-            ],
-        )      
+                keycontent,
+                components=[
+                    Button(style=ButtonStyle.red,label = "當天天氣",custom_id="當天天氣"),  # custom_id每個button獨特的id
+                    Button(style=ButtonStyle.blue,label = "一周天氣",custom_id="一周天氣"), 
+                ],
+            )  
+            while True:
+                event = await self.bot.wait_for("button_click",timeout=100)   #點擊button
+                if event.channel == msg.channel and (event.custom_id == '當天天氣' or event.custom_id == '一周天氣'):
+                    await event.respond(                      # 回傳訊息
+                            content=keycontent 
+                    )
+                    
+                    if event.custom_id == '當天天氣' :
 
-        while True:
-            event = await self.bot.wait_for("button_click" )   #點擊button
-            if event.channel == msg.channel:
-                await event.respond(                      # 回傳訊息
-                        content=keycontent 
-                )
-                
-                if event.custom_id == '當天天氣' :
+                        # 當天天氣
+                        embed=discord.Embed(title="今天天氣", url="https://www.cwb.gov.tw/V8/C/W/week.html",color=0x4895a8)
+                        embed.add_field(name=keycontent, value=weather.today(keycontent), inline=False)
+                        print(weather.today(keycontent))
+                        await msg.channel.send(embed=embed)
+                    if event.custom_id == '一周天氣':
+                        # 這周天氣
+                        week = weather.weekly(keycontent)
+                        week = weather.weekly(keycontent)
+                        week = weather.weekly(keycontent)
+                        week = weather.weekly(keycontent)
+                        embed=discord.Embed(title="一周天氣", url="https://www.cwb.gov.tw/V8/C/W/week.html", description=keycontent, color=0x5592d3)
+                        date = []
+                        for d in week.keys():
+                            date.append(d)
+                        print(week)
+                        embed.add_field(name=str(date[0]), value=str(week[date[0]]), inline=False)
+                        embed.add_field(name=date[1], value=week[date[1]], inline=False)
+                        embed.add_field(name=date[2], value=week[date[2]], inline=False)
+                        embed.add_field(name=date[3], value=week[date[3]], inline=False)
+                        embed.add_field(name=date[4], value=week[date[4]], inline=False)
+                        embed.add_field(name=date[5], value=week[date[5]], inline=False)
+                        embed.add_field(name=date[6], value=week[date[6]], inline=False)
+                        await msg.channel.send(embed=embed)
+                    
 
-                    # 當天天氣
-                    embed=discord.Embed(title="今天天氣", url="https://www.cwb.gov.tw/V8/C/W/week.html",color=0x4895a8)
-                    embed.add_field(name=keycontent, value=weather.today(keycontent), inline=False)
-                    print(weather.today(keycontent))
-                    await msg.channel.send(embed=embed)
-                if event.custom_id == '一周天氣':
-                    # 這周天氣
-                    week = weather.weekly(keycontent)
-                    week = weather.weekly(keycontent)
-                    week = weather.weekly(keycontent)
-                    week = weather.weekly(keycontent)
-                    embed=discord.Embed(title="一周天氣", url="https://www.cwb.gov.tw/V8/C/W/week.html", description=keycontent, color=0x5592d3)
-                    date = []
-                    for d in week.keys():
-                        date.append(d)
-                    print(week)
-                    embed.add_field(name=str(date[0]), value=str(week[date[0]]), inline=False)
-                    embed.add_field(name=date[1], value=week[date[1]], inline=False)
-                    embed.add_field(name=date[2], value=week[date[2]], inline=False)
-                    embed.add_field(name=date[3], value=week[date[3]], inline=False)
-                    embed.add_field(name=date[4], value=week[date[4]], inline=False)
-                    embed.add_field(name=date[5], value=week[date[5]], inline=False)
-                    embed.add_field(name=date[6], value=week[date[6]], inline=False)
-                    await msg.channel.send(embed=embed)
-            
+        
             
 
 
