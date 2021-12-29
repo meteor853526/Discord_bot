@@ -4,7 +4,7 @@ import bs4
 from datetime import datetime
 def crawler(choice):
 
-    # 抓取 soft job 版的網頁原始碼(HTML)
+    
     if choice == '雲層' :
         bac = datetime.now().strftime('%Y-%m-%d-')
         res = datetime.now().strftime('%Y-%m-%d_%H%M')

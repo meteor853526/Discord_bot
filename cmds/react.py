@@ -9,7 +9,7 @@ from discord_components import *
 # pip install discord-components
 from discord.ext import commands
 from core.classes import Cog_Extension
-
+from time import perf_counter
 with open('setting.json', mode='r',encoding='utf-8') as jFile: 
     jdata = json.load(jFile)
 
@@ -40,11 +40,13 @@ class React(Cog_Extension):
         )
 
         while True:
-            event = await self.bot.wait_for("button_click")   #點擊button
+            start = perf_counter()  
+
+            event = await self.bot.wait_for("button_click",timeout=30)   #點擊button
             if event.channel is not ctx.channel:              
                 return
-            else:
-                if event.channel == ctx.channel:
+            else:                                            # 不同命令間的按鈕會撞
+                if event.channel == ctx.channel and (event.custom_id == "雲層" or event.custom_id == "雷達" or event.custom_id == "雨量"):
                     await event.respond(                      # 回傳訊息
                         content=event.custom_id+'圖顯示成功'  # custom_id + 圖顯示成功
                     )
@@ -63,8 +65,8 @@ class React(Cog_Extension):
         )      
 
         while True:
-            event = await self.bot.wait_for("button_click" )   #點擊button
-            if event.channel == ctx.channel:
+            event = await self.bot.wait_for("button_click",timeout=30)   #點擊button
+            if event.channel == ctx.channel and (event.custom_id == "全球地震" or event.custom_id == "台灣地震"):
                 await event.respond(                      # 回傳訊息
                         content="顯示成功"  # custom_id + 圖顯示成功
                 )
