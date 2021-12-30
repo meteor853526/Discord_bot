@@ -23,9 +23,9 @@ class Event(Cog_Extension):
                 "圖片選項",
                 components=[
                     Button(style=ButtonStyle.green,label = "日出日落",custom_id="日出日落"), 
-                    Button(style=ButtonStyle.blue,label = "月出月落",custom_id="月出月落"), 
+                    Button(style=ButtonStyle.gray,label = "月出月落",custom_id="月出月落"), 
                     Button(style=ButtonStyle.blue,label = "未來一周天氣(白天)",custom_id="未來一周天氣(白天)"), 
-                    Button(style=ButtonStyle.blue,label = "未來一周天氣(晚上)",custom_id="未來一周天氣(晚上)"), 
+                    Button(style=ButtonStyle.red,label = "未來一周天氣(晚上)",custom_id="未來一周天氣(晚上)"), 
                 ],
             )
             while True:
