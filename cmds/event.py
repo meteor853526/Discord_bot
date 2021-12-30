@@ -35,7 +35,7 @@ class Event(Cog_Extension):
                             content="顯示成功"  # custom_id + 圖顯示成功
                     )
                     if event.custom_id == '日出日落' :
-                        where = "屏東縣"
+                        where = msg.content
                         get = {}
                         get = astron.astron_sun(where)
 
@@ -48,7 +48,7 @@ class Event(Cog_Extension):
                         
                         await msg.channel.send(embed=embed)
                     if event.custom_id == '月出月落' :
-                        where = "屏東縣"
+                        where = msg.content
                         get = {}
                         get = astron.astron_moon(where)
 
@@ -58,7 +58,7 @@ class Event(Cog_Extension):
                         embed.add_field(name="月沒時刻", value=get['moon_in'], inline=True)
                         embed.add_field(name="月亮仰角", value=get['moon_angle'], inline=False)
                         embed.add_field(name="月亮過中天", value=get['moon_cross_middle'], inline=True)
-                        
+                        embed.set_image(url=astron.img_get_moon())
                         await msg.channel.send(embed=embed)
                     if event.custom_id == '當天天氣' :
                         # 當天天氣
@@ -96,6 +96,7 @@ class Event(Cog_Extension):
                         embed.add_field(name= week['day'][5], value=week[12], inline=True)
                         embed.add_field(name= week['day'][6], value=week[14], inline=True)
                         await msg.channel.send(embed=embed)
+
 
 
     # @commands.Cog.listener()
