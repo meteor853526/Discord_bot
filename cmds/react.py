@@ -104,7 +104,18 @@ class React(Cog_Extension):
                     embed.set_image(url=Alldata['Image'])
                     await ctx.channel.send(embed=embed)
                        
+    @commands.command()
+    async def set_channel(self,ctx,ch:int):
+        self.channel = self.bot.get_channel(ch)
+        await ctx.send(f'Set Channel: {self.channel.mention}')
 
+    @commands.command()
+    async def set_time(self,ctx,time):
+        with open('setting.json','r',encoding = 'utf-8')as jfile:
+            jdata = json.load(jfile)
+        jdata["time"] = time
+        with open('setting.json','w',encoding = 'utf-8')as jfile:
+            json.dump(jdata,jfile,indent = 4)
     # @commands.command()
     # #爬蟲 - 地震表
     # async def tweq(self,ctx):
