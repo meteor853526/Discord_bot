@@ -77,7 +77,6 @@ def astron_moon(where):
         if(get == where):
             for i in country["time"]:
                 if(i["dataTime"] == bac):
-                    print(i)
                     remember["moon_out"] = i["parameter"][0]["parameterValue"]
                     remember["moon_cross_middle"] = i["parameter"][2]["parameterValue"]
                     remember["moon_angle"] = i["parameter"][3]["parameterValue"]
