@@ -2,6 +2,8 @@ import discord
 import random
 import json
 import sys
+
+from numpy import where
 sys.path.append('./')
 import Crawler
 import earthquake
@@ -101,24 +103,24 @@ class React(Cog_Extension):
                     
                     embed.set_image(url=Alldata['Image'])
                     await ctx.channel.send(embed=embed)
-                
+                       
 
-    @commands.command()
-    #爬蟲 - 地震表
-    async def tweq(self,ctx):
-        Alldata = {}
-        Alldata = earthquake.twearthquake()  # 呼叫earthq中的twearthquake()並回傳Alldata字典
+    # @commands.command()
+    # #爬蟲 - 地震表
+    # async def tweq(self,ctx):
+    #     Alldata = {}
+    #     Alldata = earthquake.twearthquake()  # 呼叫earthq中的twearthquake()並回傳Alldata字典
         
-        embed=discord.Embed(title="地震報告", url=Alldata['web'], description="報告連結",color=0x505177)
-        embed.set_author(name="中央氣象局資料開放平台", url="https://opendata.cwb.gov.tw/devManual/insrtuction", icon_url="https://www.kindpng.com/picc/m/178-1780574_weather-forecast-icon-png-transparent-png.png")
-        embed.add_field(name="發生時間", value=Alldata['time'], inline=False)
-        embed.add_field(name="震央", value=Alldata['where'], inline=False)
-        embed.add_field(name="芮氏規模", value=Alldata['level'], inline=True)
-        embed.add_field(name="深度", value=Alldata['depth'], inline=True)
-        # embed.add_field(name="最大震度"+ str(Alldata['areaLevel']) +"級地區", value=Alldata['area'], inline=False)
+    #     embed=discord.Embed(title="地震報告", url=Alldata['web'], description="報告連結",color=0x505177)
+    #     embed.set_author(name="中央氣象局資料開放平台", url="https://opendata.cwb.gov.tw/devManual/insrtuction", icon_url="https://www.kindpng.com/picc/m/178-1780574_weather-forecast-icon-png-transparent-png.png")
+    #     embed.add_field(name="發生時間", value=Alldata['time'], inline=False)
+    #     embed.add_field(name="震央", value=Alldata['where'], inline=False)
+    #     embed.add_field(name="芮氏規模", value=Alldata['level'], inline=True)
+    #     embed.add_field(name="深度", value=Alldata['depth'], inline=True)
+    #     # embed.add_field(name="最大震度"+ str(Alldata['areaLevel']) +"級地區", value=Alldata['area'], inline=False)
         
-        embed.set_image(url=Alldata['Image'])
-        await ctx.send(embed=embed)
+    #     embed.set_image(url=Alldata['Image'])
+    #     await ctx.send(embed=embed)
    
 def setup(bot):
     bot.add_cog(React(bot))
