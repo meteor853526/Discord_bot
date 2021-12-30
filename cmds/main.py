@@ -12,11 +12,10 @@ class Main(Cog_Extension):
     @commands.command()
     async def how(self,ctx):
         embed=discord.Embed(title="關於指令意思", color=0xe17e2d)
-        embed.add_field(name="$help", value="顯示可使用的指令列", inline=False)
-        embed.add_field(name="$earthq", value="顯示全球最新的地震資訊", inline=False)
-        embed.add_field(name="$tweq", value="顯示台灣最新編號的地震資訊", inline=False)
-        embed.add_field(name="$craw", value="顯示氣象天氣圖", inline=False)
-        embed.add_field(name="直接輸入縣市", value="顯示所在縣市天氣資訊", inline=False)
+        embed.add_field(name="$help", value="可使用的指令列", inline=False)
+        embed.add_field(name="$eq", value="全球最新地震資訊、台灣最新地震資訊", inline=False)
+        embed.add_field(name="$craw", value="氣象天氣圖", inline=False)
+        embed.add_field(name="直接輸入縣市", value="所在縣市天氣資訊、日出日落、月出月落", inline=False)
         await ctx.channel.purge(limit=1)
         await ctx.send(embed=embed)
 
