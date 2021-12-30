@@ -24,11 +24,13 @@ class Event(Cog_Extension):
                 components=[
                     Button(style=ButtonStyle.green,label = "日出日落",custom_id="日出日落"), 
                     Button(style=ButtonStyle.blue,label = "月出月落",custom_id="月出月落"), 
+                    Button(style=ButtonStyle.blue,label = "未來一周天氣(白天)",custom_id="未來一周天氣(白天)"), 
+                    Button(style=ButtonStyle.blue,label = "未來一周天氣(晚上)",custom_id="未來一周天氣(晚上)"), 
                 ],
             )
             while True:
-                event = await self.bot.wait_for("button_click")   #點擊button
-                if event.channel == msg.channel and (event.custom_id == "日出日落" or event.custom_id == "月出月落"):
+                event = await self.bot.wait_for("button_click",timeout=30)   #點擊button
+                if event.channel == msg.channel and (event.custom_id == "日出日落" or event.custom_id == "月出月落" or event.custom_id == "未來一周天氣(白天)" or event.custom_id == "未來一周天氣(晚上)"):
                     await event.respond(                      # 回傳訊息
                             content="顯示成功"  # custom_id + 圖顯示成功
                     )
@@ -58,7 +60,42 @@ class Event(Cog_Extension):
                         embed.add_field(name="月亮過中天", value=get['moon_cross_middle'], inline=True)
                         
                         await msg.channel.send(embed=embed)
+                    if event.custom_id == '當天天氣' :
+                        # 當天天氣
+                        
+                        embed=discord.Embed(title="今天天氣", url="https://www.cwb.gov.tw/V8/C/W/week.html",color=0x4895a8)
+                        embed.add_field(name=keycontent, value=weather.today(keycontent), inline=False)
+                        print(weather.today(keycontent))
+                        await msg.channel.send(embed=embed)
+                    if event.custom_id == '未來一周天氣(白天)':
+                        # 這周天氣
+                        week = {}
+                        week = weather.weekly(msg.content)
+                        embed=discord.Embed(title="未來一周天氣(白天)", url="https://www.cwb.gov.tw/V8/C/W/week.html", description=keycontent, color=0x5592d3)
+                        
+                        embed.add_field(name= week['day'][0], value=week[1], inline=True)
+                        embed.add_field(name= week['day'][1], value=week[3], inline=True)
+                        embed.add_field(name= week['day'][2], value=week[5], inline=True)
+                        embed.add_field(name= week['day'][3], value=week[7], inline=True)
+                        embed.add_field(name= week['day'][4], value=week[9], inline=True)
+                        embed.add_field(name= week['day'][5], value=week[11], inline=True)
+                        embed.add_field(name= week['day'][6], value=week[13], inline=True)
+                        await msg.channel.send(embed=embed)
 
+                    if event.custom_id == '未來一周天氣(晚上)':
+                        # 這周天氣
+                        week = {}
+                        week = weather.weekly(msg.content)
+                        embed=discord.Embed(title="未來一周天氣(晚上)", url="https://www.cwb.gov.tw/V8/C/W/week.html", description=keycontent, color=0x5592d3)
+                        
+                        embed.add_field(name= week['day'][0], value=week[2], inline=True)
+                        embed.add_field(name= week['day'][1], value=week[4], inline=True)
+                        embed.add_field(name= week['day'][2], value=week[6], inline=True)
+                        embed.add_field(name= week['day'][3], value=week[8], inline=True)
+                        embed.add_field(name= week['day'][4], value=week[10], inline=True)
+                        embed.add_field(name= week['day'][5], value=week[12], inline=True)
+                        embed.add_field(name= week['day'][6], value=week[14], inline=True)
+                        await msg.channel.send(embed=embed)
 
 
     # @commands.Cog.listener()
