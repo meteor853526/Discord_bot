@@ -1,23 +1,32 @@
+from time import asctime
 import discord
 from discord.ext import commands
 import json, asyncio, datetime
+import weather
 # 同樣繼承bot的屬性
 class Cog_Extension(commands.Cog):
     def __init__(self,bot):
         self.bot = bot
-
+        self.counter = 0
         async def time_task():
             await self.bot.wait_until_ready()
-            self.channel = self.bot.get_channel(916496197928251445)
+            self.channel = self.bot.get_channel(918520656478486551)
             while not self.bot.is_closed():
                 now_time = datetime.datetime.now().strftime("%H%M")
                 with open('setting.json','r',encoding = 'utf-8')as jFile:
                     jdata = json.load(jFile)
-                if(now_time==jdata["time"]):
-                    await self.channel.send('Task Working')
-                    await asyncio.sleep(60)
+                # week = weather.weekly(jdata["location"])
+                if(now_time==jdata["time"] and self.counter == 0):
+                    await self.channel.send('im working!')
+                    self.counter = 1
+                    await asyncio.sleep(1)
+                # else if :印出一次後 等到下一分鐘 記數歸零才能確保24hr後可以執行
+                elif(now_time!=jdata["time"]and self.counter == 1):
+                    self.counter = 0
+                    print('renew success maybe')
+                    await asyncio.sleep(1)
                 else:
-                    await asyncio.sleep(60)
+                    await asyncio.sleep(1)
                     pass
                     
         
