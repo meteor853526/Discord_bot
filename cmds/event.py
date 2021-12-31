@@ -26,6 +26,7 @@ class Event(Cog_Extension):
                     Button(style=ButtonStyle.green,label = "月出月落",custom_id="月出月落"), 
                     Button(style=ButtonStyle.blue,label = "未來一周天氣(白天)",custom_id="未來一周天氣(白天)"), 
                     Button(style=ButtonStyle.red,label = "未來一周天氣(晚上)",custom_id="未來一周天氣(晚上)"), 
+                    Button(style=ButtonStyle.red,label = "西屯區",custom_id="西屯區"), 
                 ],
             )
             while True:
@@ -96,6 +97,8 @@ class Event(Cog_Extension):
                         embed.add_field(name= week['day'][5], value=week[11], inline=True)
                         embed.add_field(name= week['day'][6], value=week[13], inline=True)
                         await msg.channel.send(embed=embed)
+
+                    
 
 
 

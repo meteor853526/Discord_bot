@@ -106,8 +106,25 @@ def weekly(city):
     return weekData
 
 def FC():
-    
+    url = requests.get("https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-073?Authorization=CWB-52C9B737-834C-4B2A-A760-12C990B1E01E&locationName=%E8%A5%BF%E5%B1%AF%E5%8D%80&elementName=WeatherDescription")
+    data = url.text
+    data2 = json.loads(data)
 
+    loc = data2["records"]['locations']
+    Temp = dict(loc[0])
+    Temp = dict(Temp['location'][0])
+    ALLdata = {}
+    dayqueue = []
+    for i in range(3):
+
+        wea = Temp['weatherElement'][0]['time'][i]
+
+        ALLdata['time' + str(i)] = wea['startTime'] +" ~ "+wea['endTime']
+        # ALLdata['starttime' + str(i)] = wea['startTime']
+        # ALLdata['endtime' + str(i)] = wea['endTime']
+        ALLdata['value' + str(i)] = wea['elementValue'][0]['value']
+
+    return ALLdata
 
 
 
@@ -186,4 +203,3 @@ def FC():
 
 # # week = today("新北市")
 # # print(week)
-    

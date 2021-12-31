@@ -4,7 +4,8 @@ from discord.ext import commands
 from discord_components import *
 import json, asyncio, datetime
 import weather
-
+import sys
+sys.path.append('./')
 with open('setting.json', mode='r',encoding='utf-8') as jFile: 
     jdata = json.load(jFile)
 
