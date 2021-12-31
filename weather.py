@@ -77,9 +77,9 @@ def weekly(city):
     min = Temp['weatherElement'][0]
     max = Temp['weatherElement'][1]
 
-    for i in range(1,15):
-        ALLdata[2*i-1] = min['time'][i]['elementValue'][0]['value']
-        ALLdata[2*i] = max['time'][i]['elementValue'][0]['value']
+    for i in range(0,14):
+        ALLdata[2*i] = min['time'][i]['elementValue'][0]['value']
+        ALLdata[2*i+1] = max['time'][i]['elementValue'][0]['value']
 
     for i in range(1,15,2):
         day = min['time'][i]["startTime"]
@@ -98,14 +98,15 @@ def weekly(city):
 
     weekData = {}
     weekData['day'] = dayqueue
-    for i in range(1,15):
-        weekData[i] = ALLdata[2*i-1] + " ~ " + ALLdata[2*i]
+    for i in range(14):
+        weekData[i] = ALLdata[2*i] + " ~ " + ALLdata[2*i+1]
     # print(weekData)
     # print(dayqueue)
 
     return weekData
 
-
+def FC():
+    
 
 
 

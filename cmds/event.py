@@ -73,13 +73,13 @@ class Event(Cog_Extension):
                         week = weather.weekly(msg.content)
                         embed=discord.Embed(title="未來一周天氣(白天)", url="https://www.cwb.gov.tw/V8/C/W/week.html", description=keycontent, color=0x5592d3)
                         
-                        embed.add_field(name= week['day'][0], value=week[1], inline=True)
-                        embed.add_field(name= week['day'][1], value=week[3], inline=True)
-                        embed.add_field(name= week['day'][2], value=week[5], inline=True)
-                        embed.add_field(name= week['day'][3], value=week[7], inline=True)
-                        embed.add_field(name= week['day'][4], value=week[9], inline=True)
-                        embed.add_field(name= week['day'][5], value=week[11], inline=True)
-                        embed.add_field(name= week['day'][6], value=week[13], inline=True)
+                        embed.add_field(name= week['day'][0], value=week[0], inline=True)
+                        embed.add_field(name= week['day'][1], value=week[2], inline=True)
+                        embed.add_field(name= week['day'][2], value=week[4], inline=True)
+                        embed.add_field(name= week['day'][3], value=week[6], inline=True)
+                        embed.add_field(name= week['day'][4], value=week[8], inline=True)
+                        embed.add_field(name= week['day'][5], value=week[10], inline=True)
+                        embed.add_field(name= week['day'][6], value=week[12], inline=True)
                         await msg.channel.send(embed=embed)
 
                     if event.custom_id == '未來一周天氣(晚上)':
@@ -88,13 +88,13 @@ class Event(Cog_Extension):
                         week = weather.weekly(msg.content)
                         embed=discord.Embed(title="未來一周天氣(晚上)", url="https://www.cwb.gov.tw/V8/C/W/week.html", description=keycontent, color=0x5592d3)
                         
-                        embed.add_field(name= week['day'][0], value=week[2], inline=True)
-                        embed.add_field(name= week['day'][1], value=week[4], inline=True)
-                        embed.add_field(name= week['day'][2], value=week[6], inline=True)
-                        embed.add_field(name= week['day'][3], value=week[8], inline=True)
-                        embed.add_field(name= week['day'][4], value=week[10], inline=True)
-                        embed.add_field(name= week['day'][5], value=week[12], inline=True)
-                        embed.add_field(name= week['day'][6], value=week[14], inline=True)
+                        embed.add_field(name= week['day'][0], value=week[1], inline=True)
+                        embed.add_field(name= week['day'][1], value=week[3], inline=True)
+                        embed.add_field(name= week['day'][2], value=week[5], inline=True)
+                        embed.add_field(name= week['day'][3], value=week[7], inline=True)
+                        embed.add_field(name= week['day'][4], value=week[9], inline=True)
+                        embed.add_field(name= week['day'][5], value=week[11], inline=True)
+                        embed.add_field(name= week['day'][6], value=week[13], inline=True)
                         await msg.channel.send(embed=embed)
 
 
