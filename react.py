@@ -10,6 +10,7 @@ from discord_components import *
 from discord.ext import commands
 from core.classes import Cog_Extension
 from time import perf_counter
+
 with open('setting.json', mode='r',encoding='utf-8') as jFile: 
     jdata = json.load(jFile)
 
@@ -140,7 +141,7 @@ class React(Cog_Extension):
 
 
 
-    @commands.command()
+    
     async def fcu(self,ctx):
         
         # 這周天氣

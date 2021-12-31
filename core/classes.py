@@ -1,14 +1,9 @@
 from time import asctime
 import discord
 from discord.ext import commands
-from discord_components import *
 import json, asyncio, datetime
+import test
 import weather
-import sys
-sys.path.append('./')
-with open('setting.json', mode='r',encoding='utf-8') as jFile: 
-    jdata = json.load(jFile)
-
 # 同樣繼承bot的屬性
 class Cog_Extension(commands.Cog):
     def __init__(self,bot):
@@ -16,18 +11,28 @@ class Cog_Extension(commands.Cog):
         self.counter = 0
         async def time_task():
             await self.bot.wait_until_ready()
-            self.channel = self.bot.get_channel(jdata['weather'])
+            self.channel = self.bot.get_channel(916496197928251445)
             while not self.bot.is_closed():
                 now_time = datetime.datetime.now().strftime("%H%M")
-                city = jdata['location']
+                with open('setting.json','r',encoding = 'utf-8')as jFile:
+                    jdata = json.load(jFile)
+                # week = weather.weekly(jdata["location"])
                 if(now_time==jdata["time"] and self.counter == 0):
-                    print('im in this it success')
-                    # week = {}
-                    # week = weather.weekly(city)
-                    # embed=discord.Embed(title="未來一周天氣(白天)", url="https://www.cwb.gov.tw/V8/C/W/week.html", description=city, color=0x5592d3)
                     
-                    # embed.add_field(name= week['day'][0], value=week[1], inline=True)
-                    await self.channel.send('im working')
+                    await self.channel.send('im working!')
+                    time = {}
+                    time= weather.FC()
+                    embed=discord.Embed(title="西屯區", url="https://www.cwb.gov.tw/V8/C/W/week.html", description="西屯區", color=0x5592d3)
+                                    
+                    embed.add_field(name= time['time0'], value=time['value0'], inline=True)
+                    embed.add_field(name= time['time1'], value=time['value1'], inline=True)
+                    embed.add_field(name= time['time2'], value=time['value2'], inline=True)
+                    # embed.add_field(name= week['day'][3], value=week[7], inline=True)
+                    # embed.add_field(name= week['day'][4], value=week[9], inline=True)
+                    # embed.add_field(name= week['day'][5], value=week[11], inline=True)
+                    # embed.add_field(name= week['day'][6], value=week[13], inline=True)
+                    await self.channel.send(embed=embed)
+                    print("蝦")
                     self.counter = 1
                     await asyncio.sleep(1)
                 # else if :印出一次後 等到下一分鐘 記數歸零才能確保24hr後可以執行
