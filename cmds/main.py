@@ -238,7 +238,7 @@ class Main(Cog_Extension):
 
 
 
-    
+    @commands.command()
     async def fcu(self,ctx):
         
         # 這周天氣
