@@ -23,15 +23,7 @@ def astron_sun(where):
     diction3 = data3["records"]["locations"]
     # 把d3加到d1裡面
 
-    # for country in all :
-    #     # 分別的縣市名稱-->變成list
-    #     get = country["locationName"]
-    #     list1.append(get)
-    
-    # bac為目前的時間(因為設計從2022開始，所以跨完年會把下一行打開)
-    # bac = str(datetime.now().strftime('%Y-%m-%d'))
-    bac = "2023-03-09"
-    # 上面為待修改的時間
+    bac = str(datetime.now().strftime('%Y-%m-%d'))
 
     remember = {}
     for country in diction1["location"]:

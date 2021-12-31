@@ -33,7 +33,7 @@ def twearthquake():
 
     info = earthquake["earthquakeInfo"]
 
-    infoWhere = info["epiCenter"]                    #json資料解析，這資料長的真的噁心
+    infoWhere = info["epiCenter"] #json資料解析，這資料長的真的噁心
     infoLevel = info["magnitude"]
     infoDepth = info["depth"]
     # infoArea = earthquake["intensity"]
