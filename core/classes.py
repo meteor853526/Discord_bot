@@ -10,27 +10,22 @@ class Cog_Extension(commands.Cog):
         self.bot = bot
         self.counter = 0
         async def time_task():
+            with open('setting.json','r',encoding = 'utf-8')as jFile:
+                    jdata = json.load(jFile)
             await self.bot.wait_until_ready()
-            self.channel = self.bot.get_channel(916496197928251445)
+            self.channel = self.bot.get_channel(int(jdata['weather']))
             while not self.bot.is_closed():
                 now_time = datetime.datetime.now().strftime("%H%M")
-                with open('setting.json','r',encoding = 'utf-8')as jFile:
-                    jdata = json.load(jFile)
-                # week = weather.weekly(jdata["location"])
+                # with open('setting.json','r',encoding = 'utf-8')as jFile:
+                #     jdata = json.load(jFile)
+                week = weather.weekly(jdata["location"])
                 if(now_time==jdata["time"] and self.counter == 0):
                     
-                    await self.channel.send('im working!')
                     time = {}
-                    time= weather.FC()
-                    embed=discord.Embed(title="西屯區", url="https://www.cwb.gov.tw/V8/C/W/week.html", description="西屯區", color=0x5592d3)
-                                    
-                    embed.add_field(name= time['time0'], value=time['value0'], inline=True)
-                    embed.add_field(name= time['time1'], value=time['value1'], inline=True)
-                    embed.add_field(name= time['time2'], value=time['value2'], inline=True)
-                    # embed.add_field(name= week['day'][3], value=week[7], inline=True)
-                    # embed.add_field(name= week['day'][4], value=week[9], inline=True)
-                    # embed.add_field(name= week['day'][5], value=week[11], inline=True)
-                    # embed.add_field(name= week['day'][6], value=week[13], inline=True)
+                    time= weather.weekly(jdata['location'])
+                    embed=discord.Embed(title=jdata['location'], url="https://www.cwb.gov.tw/V8/C/W/week.html", description="今天天氣", color=0x5592d3)
+                    embed.add_field(name= "白天", value=week[0], inline=True)                
+                    embed.add_field(name= "晚上", value=week[1], inline=True)
                     await self.channel.send(embed=embed)
                     print("蝦")
                     self.counter = 1
@@ -47,18 +42,7 @@ class Cog_Extension(commands.Cog):
         
         self.bg_task = self.bot.loop.create_task(time_task())
 
-# @commands.command()
-# async def set_channel(self,ctx,ch:int):
-#     self.channel = self.bot.get_channel(ch)
-#     await ctx.send(f'Set Channel: {self.channel.mention}')
 
-# @commands.command()
-# async def set_time(self,ctx,time):
-#     with open('setting.json','r',encoding = 'utf-8')as jfile:
-#         jdata = json.load(file)
-#     jdata["time"] = time
-#     with open('setting.json','w',encoding = 'utf-8')as jfile:
-#         json.dump(jdata,jfile,indent = 4)
         
 
 def setup(bot):
