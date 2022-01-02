@@ -212,6 +212,14 @@ class Main(Cog_Extension):
         jdata["time"] = time
         with open('setting.json','w',encoding = 'utf-8')as jfile:
             json.dump(jdata,jfile,indent = 4)
+    
+    @commands.command()
+    async def set_location(self,ctx,city):
+        with open('setting.json','r',encoding = 'utf-8')as jfile:
+            jdata = json.load(jfile)
+        jdata["location"] = city
+        with open('setting.json','w',encoding = 'utf-8')as jfile:
+            json.dump(jdata,jfile,indent = 4)
     # @commands.command()
     # #爬蟲 - 地震表
     # async def tweq(self,ctx):
