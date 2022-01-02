@@ -13,16 +13,11 @@ class Cog_Extension(commands.Cog):
             with open('setting.json','r',encoding = 'utf-8')as jFile:
                     jdata = json.load(jFile)
             await self.bot.wait_until_ready()
-            self.channel = self.bot.get_channel(int(jdata['weather']))
+            self.channel = self.bot.get_channel(916496197928251448)
             while not self.bot.is_closed():
                 now_time = datetime.datetime.now().strftime("%H%M")
-                # with open('setting.json','r',encoding = 'utf-8')as jFile:
-                #     jdata = json.load(jFile)
-                week = weather.weekly(jdata["location"])
-                if(now_time==jdata["time"] and self.counter == 0):
-                    
-                    time = {}
-                    time= weather.weekly(jdata['location'])
+                week = weather.weekly(jdata['location'])
+                if(now_time==jdata['time'] and self.counter == 0):
                     embed=discord.Embed(title=jdata['location'], url="https://www.cwb.gov.tw/V8/C/W/week.html", description="今天天氣", color=0x5592d3)
                     embed.add_field(name= "白天", value=week[0], inline=True)                
                     embed.add_field(name= "晚上", value=week[1], inline=True)
