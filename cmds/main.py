@@ -49,6 +49,8 @@ class Main(Cog_Extension):
                     await event.respond(                      # 回傳訊息
                             content="顯示成功"  # custom_id + 圖顯示成功
                     )
+                    
+
                     if event.custom_id == '日出日落' :
                         where = msg.content
                         get = {}
