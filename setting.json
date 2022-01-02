@@ -1,12 +1,12 @@
 {
     "TOKEN": "OTE3MDUxMjQ1NzIwNjU3OTMy.YazEhg.bhH7qgtaXYRdX1whpuJkC6tvmtA",
-    "weather": "916496197928251448",
-    "astronomical": "916496197928251449",
-    "earthquake": "917001516580212736",
+    "weather": 916496197928251448,
+    "astronomical": 916496197928251449,
+    "earthquake": 917001516580212736,
     "url_pic": [
         "https://pbs.twimg.com/media/D7Su2J8W0AAJVgl?format=jpg&name=900x900"
     ],
     "pic": "D:\\Userhome\\User\\Documents\\GitHub\\Discord_bot\\cat.jpg",
-    "time": "2032",
+    "time": "1228",
     "location": "\u65b0\u5317\u5e02"
 }
