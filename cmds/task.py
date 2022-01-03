@@ -22,6 +22,8 @@ class Main(Cog_Extension):
         embed.add_field(name="$help", value="可使用的指令列", inline=False)
         embed.add_field(name="$eq", value="全球最新地震資訊、台灣最新地震資訊", inline=False)
         embed.add_field(name="$craw", value="氣象天氣圖", inline=False)
+        embed.add_field(name="$set_time 時間",value="定時發送訊息", inline=False)
+        embed.add_field(name="$set_location 地點",value="定時發送該地點的訊息", inline=False)
         embed.add_field(name="直接輸入縣市", value="所在縣市天氣資訊、日出日落、月出月落", inline=False)
         await ctx.channel.purge(limit=1)
         await ctx.send(embed=embed)
