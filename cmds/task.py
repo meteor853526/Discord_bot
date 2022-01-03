@@ -19,12 +19,19 @@ class Main(Cog_Extension):
     @commands.command()
     async def how(self,ctx):
         embed=discord.Embed(title="關於指令意思", color=0xe17e2d)
-        embed.add_field(name="$help", value="可使用的指令列", inline=False)
-        embed.add_field(name="$eq", value="全球最新地震資訊、台灣最新地震資訊", inline=False)
-        embed.add_field(name="$craw", value="氣象天氣圖", inline=False)
-        embed.add_field(name="$set_time 時間",value="定時發送訊息", inline=False)
-        embed.add_field(name="$set_location 地點",value="定時發送該地點的訊息", inline=False)
-        embed.add_field(name="直接輸入縣市", value="所在縣市天氣資訊、日出日落、月出月落", inline=False)
+        a = "可使用的指令列"
+        b = "全球最新地震資訊、台灣最新地震資訊"
+        c = "氣象天氣圖"
+        d = "定時發送訊息"
+        e = "定時發送該地點的訊息"
+        f = "所在縣市天氣資訊、日出日落、月出月落"
+        embed.add_field(name= "$help", value=a, inline=False)
+        embed.add_field(name= "$eq", value=b, inline=False)
+        embed.add_field(name= "$craw", value=c, inline=False)
+        embed.add_field(name="$set_time 時間",value=d, inline=False)
+        embed.add_field(name="$set_location 地點",value=e, inline=False)
+        embed.add_field(name="直接輸入縣市", value=f,inline=False)
+        await ctx.send(embed=embed)
         await ctx.channel.purge(limit=1)
         await ctx.send(embed=embed)
 
