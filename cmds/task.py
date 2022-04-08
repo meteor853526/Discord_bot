@@ -279,6 +279,11 @@ class Main(Cog_Extension):
     async def time(self,ctx):
         now = datetime.now().strftime('%Y-%m-%d_%H%M')
         await ctx.send(now)
+    @commands.command()
+    async def file_time(self,ctx):
+        with open('setting.json','r',encoding = 'utf-8')as jFile:
+                    jdata = json.load(jFile)
+        await ctx.send(jdata['time'])
 
 
     # @commands.command()  //複讀機

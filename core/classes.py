@@ -17,10 +17,6 @@ class Cog_Extension(commands.Cog):
             self.channel = self.bot.get_channel(786192791012900887)
             while not self.bot.is_closed():
                 now_time = datetime.datetime.now().strftime("%H%M")
-                if(now_time<1000):
-                  now_time = '0'+str(now_time)
-                else:
-                  now_time = str(now_time)
                 week = weather.weekly(jdata['location'])
                 if(now_time==jdata['time'] and self.counter == 0):
                     allowed_mentions = discord.AllowedMentions(everyone = True)
@@ -40,6 +36,7 @@ class Cog_Extension(commands.Cog):
                     await asyncio.sleep(1)
                 else:
                     await asyncio.sleep(1)
+                    await self.channel.send("fail_wait")
                     pass
                     
         
