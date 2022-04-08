@@ -1,8 +1,9 @@
 import discord
 from discord.ext import commands
 from core.classes import Cog_Extension
-import datetime
+from datetime import datetime
 import random
+
 import astron,weather,earthquake,Crawler
 from discord_components import *
 from time import perf_counter
@@ -273,6 +274,11 @@ class Main(Cog_Extension):
         # embed.add_field(name= week['day'][5], value=week[11], inline=True)
         # embed.add_field(name= week['day'][6], value=week[13], inline=True)
         await ctx.send(embed=embed)
+    
+    @commands.command()
+    async def time(self,ctx):
+        now = datetime.now().strftime('%Y-%m-%d_%H%M')
+        await ctx.send(now)
 
 
     # @commands.command()  //複讀機

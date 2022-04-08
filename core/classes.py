@@ -14,7 +14,7 @@ class Cog_Extension(commands.Cog):
             with open('setting.json','r',encoding = 'utf-8')as jFile:
                     jdata = json.load(jFile)
             await self.bot.wait_until_ready()
-            self.channel = self.bot.get_channel(916496197928251445)
+            self.channel = self.bot.get_channel(786192791012900887)
             while not self.bot.is_closed():
                 now_time = datetime.datetime.now().strftime("%H%M")
                 if(now_time<1000):
