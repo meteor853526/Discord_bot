@@ -15,6 +15,11 @@ with open('setting.json', mode='r',encoding='utf-8') as jFile:
 
 
 class React(Cog_Extension):
+
+    
+        
+        
+
     @commands.command()
     # 本機圖片庫
     async def weather(self,ctx):

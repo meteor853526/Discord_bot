@@ -9,7 +9,7 @@ from core.classes import Cog_Extension
 with open('setting.json', mode='r',encoding='utf-8') as jFile: 
     jdata = json.load(jFile)
 
-bot = commands.Bot(command_prefix='$')
+bot = commands.Bot(command_prefix='$', intents=discord.Intents.all())  # discord.py　api近期更新，需要去portal開啟intent以及在此行加入intents=discord.Intents.all()
 
 @bot.event
 async def on_ready():
@@ -19,9 +19,20 @@ async def on_ready():
 async def on_message(message):
     print(message.channel.id)
     print(message)
+    print(message.content)
     print("????")
+    # mentions = message.mentions
+    # if len(mentions) == 0 :
+    #     await message.reply("Remember to give someone to get status!")
+    # else:
+    #     activ = mentions[0].activity
+    #     if activ == None and not message.content.startswith('None'):
+    #         await message.reply("None")
+    #     else:    
+    #         await message.reply(activ.name)
+
     if message.content.startswith('測試'):
-        await message.channel.id.send('\OwO/')
+        await message.channel.send('\OwO/')
     await bot.process_commands(message)
 
 # load,unload,reload實作
