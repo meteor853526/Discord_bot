@@ -2,10 +2,10 @@ import discord
 import json
 from discord.ext import commands
 from core.classes import Cog_Extension
-from discord_components import *
+# from discord_components import *
 import weather
-from bs4 import BeautifulSoup
-from selenium import webdriver
+# from bs4 import BeautifulSoup
+# from selenium import webdriver
 
 with open('setting.json', mode='r',encoding='utf-8') as jFile: 
     jdata = json.load(jFile)
@@ -20,10 +20,10 @@ class Event(Cog_Extension):
         if (msg.content in keyword) and (msg.author != self.bot.user):
             await msg.channel.send(
             keycontent,
-            components=[
-                Button(style=ButtonStyle.red,label = "當天天氣",custom_id="當天天氣"),  # custom_id每個button獨特的id
-                Button(style=ButtonStyle.blue,label = "一周天氣",custom_id="一周天氣"), 
-            ],
+            # components=[
+            #     Button(style=ButtonStyle.red,label = "當天天氣",custom_id="當天天氣"),  # custom_id每個button獨特的id
+            #     Button(style=ButtonStyle.blue,label = "一周天氣",custom_id="一周天氣"), 
+            # ],
         )      
 
         while True:

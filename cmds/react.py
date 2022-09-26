@@ -5,7 +5,7 @@ import sys
 sys.path.append('./')
 import Crawler
 import earthquake
-from discord_components import *
+# from discord_components import *
 # pip install discord-components
 from discord.ext import commands
 from core.classes import Cog_Extension
@@ -32,11 +32,11 @@ class React(Cog_Extension):
     async def craw(self,ctx):
         await ctx.channel.send(
             "圖片選項",
-            components=[
-                Button(style=ButtonStyle.green,label = "雲層",custom_id="雲層"),  # custom_id每個button獨特的id
-                Button(style=ButtonStyle.blue,label = "雷達",custom_id="雷達"),     
-                Button(style=ButtonStyle.red,label = "雨量",custom_id="雨量"),
-            ],
+            # components=[
+            #     Button(style=ButtonStyle.green,label = "雲層",custom_id="雲層"),  # custom_id每個button獨特的id
+            #     Button(style=ButtonStyle.blue,label = "雷達",custom_id="雷達"),     
+            #     Button(style=ButtonStyle.red,label = "雨量",custom_id="雨量"),
+            # ],
         )
 
         while True:
@@ -57,10 +57,10 @@ class React(Cog_Extension):
         
         await ctx.channel.send(
             "圖片",
-            components=[
-                Button(style=ButtonStyle.red,label = "全球地震",custom_id="全球地震"),  # custom_id每個button獨特的id
-                Button(style=ButtonStyle.blue,label = "台灣地震",custom_id="台灣地震"), 
-            ],
+            # components=[
+            #     Button(style=ButtonStyle.red,label = "全球地震",custom_id="全球地震"),  # custom_id每個button獨特的id
+            #     Button(style=ButtonStyle.blue,label = "台灣地震",custom_id="台灣地震"), 
+            # ],
         )      
 
         while True:
