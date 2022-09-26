@@ -17,9 +17,11 @@ async def on_ready():
     # DiscordComponents(bot)
 @bot.event
 async def on_message(message):
+    print(message.channel.id)
+    print(message)
     print("????")
     if message.content.startswith('測試'):
-        await message.channel.send('\OwO/')
+        await message.channel.id.send('\OwO/')
     await bot.process_commands(message)
 
 # load,unload,reload實作
