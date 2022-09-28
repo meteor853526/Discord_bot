@@ -2,6 +2,7 @@ import discord
 import json
 from discord.ext import commands
 from core.classes import Cog_Extension
+import datetime
 # from discord_components import *
 import weather
 # from bs4 import BeautifulSoup
@@ -36,9 +37,8 @@ class Event(Cog_Extension):
         mentions = msg.mentions
 
         if msg.content == "時間" or msg.content == "稍等":
-
             if len(mentions) == 0 :
-                
+                print(datetime.datetime.now())
                 await msg.reply("稍等")
             else:
                 
